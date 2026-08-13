@@ -1,0 +1,52 @@
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+.venv/
+venv/
+env/
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# model weights & caches
+*.safetensors
+*.bin
+*.pt
+*.gguf
+models/
+.cache/
+hf_cache/
+
+# benchmark artifacts (results/ manifests ARE committed; raw traces are not)
+benchmarks/results/**/raw/
+*.nsys-rep
+*.ncu-rep
+*.qdrep
+
+# triton autotune cache
+.triton/
+
+# dashboard
+node_modules/
+dashboard/dist/
+dashboard/build/
+
+# editors / os
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# logs
+*.log
+logs/
