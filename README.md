@@ -34,6 +34,12 @@ Non-clairvoyant scheduling under KV constraints is an explicitly open problem in
 | Decode kernel achieved bandwidth (A100) | ≥ 70% |
 | Horizon goodput gain over FCFS | ≥ 15% |
 
+## AI assistance
+
+This project was developed with AI assistance (Anthropic's Claude, via [Claude Code](https://claude.com/claude-code)). AI tooling contributed to the planning document, code generation, kernel drafts, and documentation. The research direction, architectural decisions, performance claims, and review of correctness are human-directed and human-owned; results are backed by the test and benchmark suites in this repo rather than by any assistant's assertion.
+
+Commits containing substantial AI-generated content carry a `Co-Authored-By: Claude` trailer, following the [GitHub co-authorship convention](https://docs.github.com/articles/creating-a-commit-with-multiple-authors).
+
 ## License
 
 MIT
