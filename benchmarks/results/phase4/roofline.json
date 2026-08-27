@@ -1,0 +1,12 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B",
+  "param_bytes": 988065536,
+  "wall_s_64tok": 19.835502991001704,
+  "achieved_gbs": 3.1880307916913853,
+  "t0_peak_gbs": 140.0,
+  "frac_t0_bw": 0.022771648512081324,
+  "tflops": 0.0031880307916913853,
+  "mfu_t0": 0.00035422564352126503,
+  "a100_ridge_batch": 153,
+  "note": "Decode AI \u2248 batch_size. Single-seq decode is deep in the bandwidth roof."
+}

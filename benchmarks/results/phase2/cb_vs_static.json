@@ -1,0 +1,11 @@
+{
+  "n_requests": 16,
+  "max_tokens": 32,
+  "output_tokens": 482,
+  "sequential_s": 29.54797009699905,
+  "continuous_batch_s": 3.825095334999787,
+  "speedup": 7.724766968978225,
+  "sequential_tok_s": 16.31245728277466,
+  "cb_tok_s": 126.00993120084595,
+  "token_match": false
+}

@@ -1,0 +1,62 @@
+{
+  "system": "slipstream",
+  "config": "naive (phase1 contiguous KV, eager attn)",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "max_new_tokens": 128,
+  "n_prompts": 8,
+  "tok_s_median": 15.152825413370449,
+  "tok_s_min": 10.279943182970186,
+  "tok_s_max": 18.339627301194273,
+  "per_prompt": [
+    {
+      "prompt": "The capital of France is",
+      "output_tokens": 128,
+      "wall_s": 11.806593538000016,
+      "tok_s": 10.841399730415606
+    },
+    {
+      "prompt": "In machine learning, a transformer is",
+      "output_tokens": 128,
+      "wall_s": 11.92178385799707,
+      "tok_s": 10.736648267124744
+    },
+    {
+      "prompt": "Write a one-sentence definition of throughput.",
+      "output_tokens": 17,
+      "wall_s": 1.6537056380002468,
+      "tok_s": 10.279943182970186
+    },
+    {
+      "prompt": "2 + 2 =",
+      "output_tokens": 128,
+      "wall_s": 8.969230376998894,
+      "tok_s": 14.271012630944242
+    },
+    {
+      "prompt": "Once upon a time in a small village",
+      "output_tokens": 128,
+      "wall_s": 7.711652395002602,
+      "tok_s": 16.598258511100436
+    },
+    {
+      "prompt": "The purpose of a KV cache in autoregressive decoding is",
+      "output_tokens": 128,
+      "wall_s": 7.3324512420003884,
+      "tok_s": 17.45664523028999
+    },
+    {
+      "prompt": "Explain PagedAttention in two sentences.",
+      "output_tokens": 128,
+      "wall_s": 6.979422094998881,
+      "tok_s": 18.339627301194273
+    },
+    {
+      "prompt": "def fibonacci(n):",
+      "output_tokens": 128,
+      "wall_s": 7.982718315000966,
+      "tok_s": 16.034638195796656
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "skipped": false,
+  "cuda": true,
+  "device": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "dtype": "torch.float16",
+  "triton_fused_beats_eager": false,
+  "note": "Triton is opt-in (SLIPSTREAM_FUSED=1). Default public API stays eager. RMSNorm/RoPE typically beat eager; SwiGLU decode may lose to ATen. Later re-run discarded: GPU busy (w4_goodput).",
+  "ops_triton_faster": [
+    "rmsnorm_decode_b8",
+    "rmsnorm_residual_b8",
+    "rmsnorm_prefill_4x128",
+    "swiglu_prefill_4x128",
+    "rope_decode_b8",
+    "rope_prefill_2x128"
+  ],
+  "ops_eager_faster": [
+    "swiglu_decode_b8"
+  ],
+  "rows": [
+    {
+      "op": "rmsnorm_decode_b8",
+      "eager_ms": 0.4682547378540039,
+      "fused_ms": 0.11771903991699219,
+      "speedup": 3.977731539300581,
+      "triton_ok": true,
+      "numeric_match": true,
+      "error": null
+    },
+    {
+      "op": "rmsnorm_residual_b8",
+      "eager_ms": 0.5115699386596679,
+      "fused_ms": 0.14891008377075196,
+      "speedup": 3.435428452563583,
+      "triton_ok": true,
+      "numeric_match": true,
+      "error": null
+    },
+    {
+      "op": "rmsnorm_prefill_4x128",
+      "eager_ms": 0.33075199127197263,
+      "fused_ms": 0.184586238861084,
+      "speedup": 1.7918561714716454,
+      "triton_ok": true,
+      "numeric_match": true,
+      "error": null
+    },
+    {
+      "op": "rmsnorm_public_eager_matches_module",
+      "match": true
+    },
+    {
+      "op": "swiglu_decode_b8",
+      "eager_ms": 0.08232959747314453,
+      "fused_ms": 0.0960102367401123,
+      "speedup": 0.8575085352200562,
+      "triton_ok": true,
+      "numeric_match": true,
+      "error": null
+    },
+    {
+      "op": "swiglu_prefill_4x128",
+      "eager_ms": 0.25001983642578124,
+      "fused_ms": 0.16510976791381837,
+      "speedup": 1.5142643562813498,
+      "triton_ok": true,
+      "numeric_match": true,
+      "error": null
+    },
+    {
+      "op": "swiglu_public_eager_matches_silu",
+      "match": true
+    },
+    {
+      "op": "rope_decode_b8",
+      "eager_ms": 1.5958834838867189,
+      "fused_ms": 0.8998912048339843,
+      "speedup": 1.7734182480215863,
+      "triton_ok": true,
+      "numeric_match": true,
+      "error": null
+    },
+    {
+      "op": "rope_prefill_2x128",
+      "eager_ms": 1.8924134826660157,
+      "fused_ms": 0.9011199951171875,
+      "speedup": 2.1000682405453825,
+      "triton_ok": true,
+      "numeric_match": true,
+      "error": null
+    },
+    {
+      "op": "rope_public_eager_matches_apply",
+      "match": true
+    }
+  ]
+}

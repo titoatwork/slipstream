@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-08-13T14:12:46.205756+00:00",
+  "hostname": "LAPTOP-B3S9FPUN",
+  "platform": {
+    "system": "Linux",
+    "release": "6.6.87.2-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "python_version": "3.12.3"
+  },
+  "gpu": [
+    {
+      "index": "0",
+      "name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+      "memory_mib": "6144",
+      "driver": "592.82",
+      "compute_cap": "8.6",
+      "clock_graphics": "210",
+      "clock_memory": "374"
+    }
+  ],
+  "cuda": {
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Fri_Jun_14_16:34:21_PDT_2024\nCuda compilation tools, release 12.6, V12.6.20\nBuild cuda_12.6.r12.6/compiler.34431801_0"
+  },
+  "packages": {
+    "torch": "2.13.0+cu126",
+    "triton": "3.7.1",
+    "transformers": "5.15.0",
+    "numpy": "2.5.2",
+    "slipstream": "0.0.0"
+  },
+  "git_sha": "4c9549659b81afd15e6efde15a0426885b18697c",
+  "clock_locked": null,
+  "exclusive_gpu": null,
+  "slurm_job_id": null,
+  "model": "Qwen/Qwen2.5-0.5B",
+  "workload": "phase0_hf_baseline",
+  "config": {
+    "max_new_tokens": 128,
+    "do_sample": false
+  },
+  "notes": "HuggingFace generate() floor baseline for Gate 0."
+}

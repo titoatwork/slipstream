@@ -1,0 +1,139 @@
+{
+  "open_loop_horizon_f0": {
+    "policy": "horizon-f0",
+    "inject": "arrival",
+    "mean_decoded": 24.0,
+    "predictor_mean": 31.07582371254446,
+    "preemptions": 0.0,
+    "smooth_goodput": 0.38271333963811177,
+    "naive_goodput": 0.5299107779604625,
+    "p99_ttft_s": 23.86634002563369,
+    "p50_ttft_s": 7.060669365317153,
+    "p99_wait_s": 23.515618993631506,
+    "p50_wait_s": 6.560002057318343,
+    "p99_itl_s": 1.0992991950042779,
+    "wall_s": 33.96798243900412,
+    "n_slo": 13.0,
+    "completed": 18.0,
+    "t0_slo": {
+      "n_ok": 18.0,
+      "completed": 18.0,
+      "n_slo": 13.0,
+      "n_slo_mean_tpot": 18.0,
+      "n_aborted": 0.0,
+      "n_traces": 18.0,
+      "naive_goodput": 0.5299107779604625,
+      "mean_slo_goodput": 0.5299107779604625,
+      "smooth_goodput": 0.38271333963811177,
+      "p50_ttft_s": 7.060669365317153,
+      "p99_ttft_s": 23.86634002563369,
+      "p50_wait_s": 6.560002057318343,
+      "p99_wait_s": 23.515618993631506,
+      "p50_prefill_s": 0.4228388810006436,
+      "p99_prefill_s": 0.8661587230017176,
+      "p50_itl_s": 0.2953750829983619,
+      "p99_itl_s": 1.0992991950042779,
+      "mean_output": 24.0,
+      "wall_s": 33.96798243900412
+    }
+  },
+  "closed_repeat_seeds": [
+    {
+      "seed": 1,
+      "kv_bound": true,
+      "fcfs_preemptions": 13.0,
+      "gains": {
+        "horizon_gain_vs_fcfs_smooth": 5.600724642976623,
+        "horizon_gain_vs_fcfs_naive": -0.4499396130852814,
+        "gap_closed_to_oracle_smooth": 0.3627496212094859,
+        "gap_closed_to_oracle_naive": -4.688033272994266,
+        "p99_ttft_ratio_vs_fcfs": 2.68543830983808,
+        "wall_ratio_fcfs_over_horizon": 0.5500603869147185
+      },
+      "runs": [
+        {
+          "policy": "horizon",
+          "wall_s": 61.39776001399878,
+          "smooth_goodput": 0.19544686967837235,
+          "naive_goodput": 0.29317030451755854,
+          "n_slo": 12.0,
+          "preemptions": 0.0,
+          "p50_ttft_s": 9.69481675499992,
+          "p99_ttft_s": 54.13538255599997,
+          "p99_itl_s": 0.8653848230023868
+        },
+        {
+          "policy": "oracle",
+          "wall_s": 30.814971774001606,
+          "smooth_goodput": 0.48677636669637986,
+          "naive_goodput": 0.5841316400356558,
+          "n_slo": 15.0,
+          "preemptions": 0.0,
+          "p50_ttft_s": 1.8897558960015886,
+          "p99_ttft_s": 26.39519066500361,
+          "p99_itl_s": 0.8747472190007102
+        },
+        {
+          "policy": "fcfs",
+          "wall_s": 33.7724756289972,
+          "smooth_goodput": 0.029609911070344972,
+          "naive_goodput": 0.5329783992662095,
+          "n_slo": 1.0,
+          "preemptions": 13.0,
+          "p50_ttft_s": 1.5762790879962267,
+          "p99_ttft_s": 20.1588628410027,
+          "p99_itl_s": 7.400691579998238
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "kv_bound": true,
+      "fcfs_preemptions": 13.0,
+      "gains": {
+        "horizon_gain_vs_fcfs_smooth": 0.8112220795903646,
+        "horizon_gain_vs_fcfs_naive": -0.39625930680321175,
+        "gap_closed_to_oracle_smooth": 0.5506182958900382,
+        "gap_closed_to_oracle_naive": 0.0,
+        "p99_ttft_ratio_vs_fcfs": 2.6762882861307222,
+        "wall_ratio_fcfs_over_horizon": 0.6037406931967882
+      },
+      "runs": [
+        {
+          "policy": "horizon",
+          "wall_s": 53.41846590500063,
+          "smooth_goodput": 0.2808017741781651,
+          "naive_goodput": 0.33696212901379813,
+          "n_slo": 15.0,
+          "preemptions": 0.0,
+          "p50_ttft_s": 6.298728815003415,
+          "p99_ttft_s": 47.72640443200362,
+          "p99_itl_s": 0.8347128159948625
+        },
+        {
+          "policy": "oracle",
+          "wall_s": 39.11898226599442,
+          "smooth_goodput": 0.38344555842495137,
+          "naive_goodput": 0.4601346701099417,
+          "n_slo": 15.0,
+          "preemptions": 0.0,
+          "p50_ttft_s": 1.4527064669964602,
+          "p99_ttft_s": 29.652935731995967,
+          "p99_itl_s": 0.824799169000471
+        },
+        {
+          "policy": "fcfs",
+          "wall_s": 32.25090163499408,
+          "smooth_goodput": 0.15503442528796507,
+          "naive_goodput": 0.5581239310366742,
+          "n_slo": 5.0,
+          "preemptions": 13.0,
+          "p50_ttft_s": 1.4839796679952997,
+          "p99_ttft_s": 17.833058074997098,
+          "p99_itl_s": 5.338881338000647
+        }
+      ]
+    }
+  ],
+  "notes": "Open-loop f0 on the same 0.20s list as w4_ablation. Closed seeds reuse the binding 24-block burst (not statistical independence of GPU clocks, but a stability check)."
+}

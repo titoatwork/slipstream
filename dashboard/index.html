@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Slipstream — KV block table</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Slipstream</h1>
+    <p class="lede">Each cell is one physical KV page. Empty, owned, or shared (refcount ≥ 2).</p>
+  </header>
+  <section id="stats">
+    <div class="stat"><span class="k">KV used</span><span id="kv">—</span></div>
+    <div class="stat"><span class="k">Prefix hit</span><span id="hit">—</span></div>
+    <div class="stat"><span class="k">Running</span><span id="run">—</span></div>
+    <div class="stat"><span class="k">Waiting</span><span id="wait">—</span></div>
+    <div class="stat"><span class="k">Blocks</span><span id="nblocks">—</span></div>
+  </section>
+  <div id="legend">
+    <span class="swatch s0"></span> free
+    <span class="swatch s1"></span> one sequence
+    <span class="swatch s2"></span> shared (prefix)
+    <span class="swatch s3"></span> heavily shared
+  </div>
+  <canvas id="grid" width="960" height="420"></canvas>
+  <p id="hint">Connects to <code>/ws/metrics</code>. Run the API server, then open <code>/dashboard/</code>.</p>
+  <script src="app.js"></script>
+</body>
+</html>

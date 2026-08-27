@@ -1324,6 +1324,11 @@ The methodology post is the sleeper. Rigor is rarer than capability, and it is t
 | Date | Section | Change | Rationale |
 |---|---|---|---|
 | 2026-08-13 | — | Initial version | — |
+| 2026-08-13 | §8.3 | Phase 0 contract freeze. Specified types that §8.3 named but left incomplete: `SamplingParams`, `AllocStatus` (`OK`/`LATER`/`NEVER`), `PreemptionMode` (`SWAP`/`RECOMPUTE`), `EngineState` (frozen snapshot), `Request`, `EngineConfig`/`ModelConfig`/`CacheConfig`/`SchedulerConfig`/`ParallelConfig`. Added `Sequence.request_id` and `Sequence.oracle_output_len` (oracle-only). `BlockManager` and `SchedulingPolicy` are `typing.Protocol`s; the allocator stub is `BlockManagerImpl` so the protocol name stays unambiguous. `block_size` constrained to `{8, 16, 32}`. | Gate 0: agents implement against complete, importable contracts. |
+| 2026-08-13 | §7.3 | T0 system Python is 3.12.3. Pin relaxed to `requires-python >= 3.11`. | Machine fact; 3.12 is a strict superset for our syntax. |
+| 2026-08-13 | §8.3 / ModelConfig | Added optional architecture fields used at load: `rope_scaling`, `rope_type`, `attention_bias`, `mlp_bias`, `model_type`, `bos_token_id`, `eos_token_id`, `pad_token_id`. Defaults preserve Phase 0 construction. | Required to load Qwen2 / Llama checkpoints without inventing a second config type. |
+| 2026-08-13 | CacheConfig | Added `enable_paging: bool = True`. Phase 1 naive path remains when False. | Ablation seam: paging must be a config flip, not a fork. |
+| 2026-08-14 | SchedulerConfig | Added `prefill_chunk_size: int = 256` (used when `enable_chunked_prefill`). | Stall-free Sarathi-style chunks. |
 
 *All contract changes and target revisions are recorded here. A target missed without an amendment entry is a failure, not a revision.*
 

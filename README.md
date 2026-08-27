@@ -6,7 +6,7 @@ PagedAttention · continuous batching · chunked prefill · prefix caching · cu
 
 ---
 
-> **Status:** Planning complete. Implementation begins at Phase 0.
+> **Status:** Phase 4 on T0, **binding KV**. FCFS preempts 13× every closed seed; Horizon 0. T0-smooth hits always favor Horizon; the ratio is **1.8–16×** (median ~6.6×) — do not headline the first-run 16×. Fairness p99 TTFT fails 2× on 2/3 seeds. Open-loop: FCFS 71 preempts / 0 smooth; Horizon-f2 16/18. f0≠f2 on the closed cell. Paper 2s/200ms is a T0 miss. Phases 0–3: ITL p99 **−64%**, prefix **93%**.
 
 ## The thesis
 

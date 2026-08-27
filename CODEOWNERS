@@ -1,0 +1,51 @@
+# Agent file ownership (MASTERPLAN §11.4).
+# Every path has exactly one owning agent. Cross-boundary edits need that
+# agent's review. Human owner: Ibtesham Ul Haque.
+
+# A1 Runtime — contracts, model architecture, numerics
+/slipstream/core/                        # A1
+/slipstream/models/                      # A1
+
+# A2 Memory — block manager, prefix cache, swap
+/slipstream/memory/                      # A2
+
+# A3 Kernels
+/slipstream/kernels/                     # A3
+/slipstream/engine/cuda_graph.py         # A3
+
+# A4 Scheduler mechanism + speculative decoding
+/slipstream/scheduler/scheduler.py       # A4
+/slipstream/scheduler/policies/fcfs.py   # A4
+/slipstream/speculative/                 # A4
+/slipstream/engine/sampler.py            # A1  (S6; A6 implements Phase 1 sampler per §11.3)
+
+# A5 Serving + observability
+/slipstream/entrypoints/                 # A5
+/slipstream/observability/               # A5
+/dashboard/                              # A5
+/slipstream/engine/engine_core.py        # A5 (process isolation, Phase 4)
+/slipstream/engine/llm_engine.py         # A5
+
+# A6 Distributed
+/slipstream/distributed/                 # A6
+
+# A7 Verification — tests, CI, harness
+/tests/                                  # A7
+/ci/                                     # A7
+/benchmarks/                             # A7
+/.github/                                # A7
+/pyproject.toml                          # A7
+
+# A8 Research — Horizon, predictor, paper
+/slipstream/scheduler/policies/horizon.py  # A8
+/slipstream/scheduler/policies/oracle.py   # A8
+/slipstream/scheduler/predictor/           # A8
+/docs/related_work.md                      # A8
+/docs/paper/                               # A8
+
+# Shared / owner
+/MASTERPLAN.md
+/README.md
+/docs/architecture.md
+/docs/environment.md
+/docs/log/

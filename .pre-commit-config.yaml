@@ -1,0 +1,16 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.8
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: forbidden-imports
+        name: slipstream must not import vllm/sglang/transformers
+        language: python
+        entry: python ci/check_forbidden_imports.py
+        pass_filenames: false
+        always_run: true

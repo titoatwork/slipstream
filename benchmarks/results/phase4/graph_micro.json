@@ -1,0 +1,17 @@
+{
+  "skipped": false,
+  "cuda": true,
+  "device": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "fn": "rmsnorm + linear + linear (static decode, no paged attention)",
+  "batch": 8,
+  "hidden": 896,
+  "dtype": "torch.float16",
+  "captured": true,
+  "numeric_match": true,
+  "eager_ms": 0.9338674926757813,
+  "graph_ms": 0.07987199783325195,
+  "graph_copy_in_ms": 0.11536383628845215,
+  "speedup": 11.69205125713029,
+  "replay_returns_static_out": true,
+  "note": "Captured on T0 while GPU was free. Later re-run discarded: GPU busy (w4_goodput)."
+}

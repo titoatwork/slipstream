@@ -1,0 +1,68 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B",
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "max_new_tokens": 128,
+  "n_prompts": 8,
+  "tok_s_median": 11.08843949872093,
+  "tok_s_min": 7.116656415412866,
+  "tok_s_max": 12.214757372698884,
+  "per_prompt": [
+    {
+      "prompt": "The capital of France is",
+      "prompt_tokens": 5,
+      "output_tokens": 128,
+      "wall_s": 11.690956716998699,
+      "tok_s": 10.948633469311154
+    },
+    {
+      "prompt": "In machine learning, a transformer is",
+      "prompt_tokens": 7,
+      "output_tokens": 128,
+      "wall_s": 11.399821965000228,
+      "tok_s": 11.228245528130705
+    },
+    {
+      "prompt": "Write a one-sentence definition of throughput.",
+      "prompt_tokens": 9,
+      "output_tokens": 17,
+      "wall_s": 2.118566954999551,
+      "tok_s": 8.024292062085715
+    },
+    {
+      "prompt": "2 + 2 =",
+      "prompt_tokens": 5,
+      "output_tokens": 128,
+      "wall_s": 10.479127508999227,
+      "tok_s": 12.214757372698884
+    },
+    {
+      "prompt": "Once upon a time in a small village",
+      "prompt_tokens": 8,
+      "output_tokens": 128,
+      "wall_s": 11.942211382998721,
+      "tok_s": 10.718282895429612
+    },
+    {
+      "prompt": "The purpose of a KV cache in autoregressive decoding is",
+      "prompt_tokens": 12,
+      "output_tokens": 128,
+      "wall_s": 10.858697072000723,
+      "tok_s": 11.787786246477904
+    },
+    {
+      "prompt": "Explain PagedAttention in two sentences.",
+      "prompt_tokens": 9,
+      "output_tokens": 90,
+      "wall_s": 12.646388240000306,
+      "tok_s": 7.116656415412866
+    },
+    {
+      "prompt": "def fibonacci(n):",
+      "prompt_tokens": 4,
+      "output_tokens": 128,
+      "wall_s": 10.887561472000016,
+      "tok_s": 11.75653522868117
+    }
+  ]
+}

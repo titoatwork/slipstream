@@ -1,0 +1,9 @@
+{
+  "n": 8,
+  "cold_ttft_median_s": 0.05214911399889388,
+  "hot_ttft_median_s": 0.051269198000227334,
+  "ttft_cut": 0.016873076667902942,
+  "hit_rate": 0.9294566253574833,
+  "cached_tokens": 15600,
+  "queried_tokens": 16784
+}
