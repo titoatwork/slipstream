@@ -13,13 +13,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install
-        run: pip install -e ".[dev]"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      # GitHub runners have no GPU. torch/triton are still required at *import*
+      # time (slipstream.memory, slipstream.kernels import them at module top),
+      # so we install the CPU torch build purely so pytest can collect. Kernels
+      # and parity remain @pytest.mark.gpu and run on the clusters, not here.
+      - name: Install (CPU torch)
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -e ".[dev,gpu]"
       - name: Ruff
         run: ruff check slipstream tests benchmarks ci
       - name: Forbidden imports
         run: python ci/check_forbidden_imports.py
-      - name: Pytest
-        run: pytest
+      - name: Pytest (CPU lane; GPU-marked tests run on the clusters)
+        run: pytest -m "not gpu"
         env:
           SLIPSTREAM_DEBUG: "1"
