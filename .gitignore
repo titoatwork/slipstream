@@ -23,7 +23,9 @@ htmlcov/
 *.bin
 *.pt
 *.gguf
-models/
+/models/          # weight downloads at repo root — anchored so it does NOT
+                  # match the slipstream/models/ source package
+!slipstream/models/
 .cache/
 hf_cache/
 
