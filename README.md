@@ -1,6 +1,6 @@
 # Slipstream
 
-**A high-throughput LLM inference engine built from scratch, with a novel memory-aware scheduler.**
+**A high-throughput LLM inference engine built from scratch.** The research lives at the *system* layer: a memory-aware, output-length-predictive scheduler operating under hard KV-cache constraints — not a single faster kernel, but the policy that decides which sequences occupy memory and run.
 
 PagedAttention · continuous batching · chunked prefill · prefix caching · custom Triton kernels · speculative decoding · tensor parallelism · prefill/decode disaggregation.
 
@@ -33,6 +33,10 @@ Non-clairvoyant scheduling under KV constraints is an explicitly open problem in
 | KV cache memory waste | < 5% (vs > 60% naive) |
 | Decode kernel achieved bandwidth (A100) | ≥ 70% |
 | Horizon goodput gain over FCFS | ≥ 15% |
+
+## Companion project
+
+**[qgemm-mx](https://github.com/titoatwork/qgemm-mx)** is the deliberate counterpart to this work — the same thesis, one layer down. Both start from the fact that the decode path is bandwidth-bound. qgemm-mx attacks that wall at the **kernel** level, recovering block-scaled FP4 (MXFP4/NVFP4) throughput on GPUs without native FP4. Slipstream attacks it at the **system** level, where memory allocation and scheduling policy set the achievable batch size. A fast FP4 GEMM is exactly the kind of kernel that plugs into Slipstream's quantized decode path: kernel depth and system breadth, deliberately paired.
 
 ## AI assistance
 
