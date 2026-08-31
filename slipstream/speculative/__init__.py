@@ -7,6 +7,7 @@ from slipstream.speculative.decode import (
     SpeculativeStats,
     speculative_generate,
 )
+from slipstream.speculative.kv_cached import SpeculativeRunner
 from slipstream.speculative.rejection import VerifyResult, verify_tokens
 
 
@@ -18,6 +19,7 @@ class SpeculativeConfig:
 __all__ = [
     "ScoreFn",
     "SpeculativeConfig",
+    "SpeculativeRunner",
     "SpeculativeStats",
     "VerifyResult",
     "speculative_generate",

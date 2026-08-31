@@ -114,6 +114,44 @@ def test_naive_kv_cache_reset_zeros_length() -> None:
     assert full_k.shape == (1, 2, 2, 4)
 
 
+def test_naive_kv_cache_truncate_rolls_back_and_overwrites() -> None:
+    # Rollback of rejected speculative positions (S8): truncate then re-append
+    # must land on the truncated slots and read back the new values.
+    cache = _make_cache(max_len=8)
+    k0 = torch.arange(1 * 2 * 4 * 4, dtype=torch.float32).reshape(1, 2, 4, 4)
+    v0 = k0 + 100
+    cache.update(0, k0, v0)
+    cache.update(1, k0 + 200, v0 + 200)
+    assert cache.seq_len == 4
+
+    cache.truncate(2)
+    assert cache.seq_len == 2
+
+    # Next append starts exactly at the truncation point (layer 0 then layer 1).
+    k_new = torch.full((1, 2, 3, 4), 7.0)
+    full_k, _ = cache.update(0, k_new, k_new + 1)
+    assert cache.seq_len == 5
+    assert full_k.shape == (1, 2, 5, 4)
+    torch.testing.assert_close(full_k[..., :2, :], k0[..., :2, :])  # kept prefix
+    torch.testing.assert_close(full_k[..., 2:, :], k_new)  # overwrote past the cut
+    cache.update(1, k_new + 2, k_new + 3)  # layer-1 consistency check must pass
+    assert cache.seq_len == 5
+
+
+def test_naive_kv_cache_truncate_rejects_out_of_range() -> None:
+    cache = _make_cache(max_len=8)
+    k = torch.randn(1, 2, 3, 4)
+    cache.update(0, k, k + 1)
+    cache.update(1, k, k + 1)
+    assert cache.seq_len == 3
+    with pytest.raises(ValueError):
+        cache.truncate(4)  # cannot extend
+    with pytest.raises(ValueError):
+        cache.truncate(-1)
+    cache.truncate(3)  # no-op is allowed
+    assert cache.seq_len == 3
+
+
 def test_sampler_greedy_is_argmax() -> None:
     sampler = load_sampler()
     logits = torch.tensor(
