@@ -69,6 +69,21 @@ class NaiveKVCache:
         for i in range(self.num_layers):
             self._layer_fill[i] = 0
 
+    def truncate(self, new_len: int) -> None:
+        """Drop cached tokens past ``new_len``, keeping ``[0, new_len)``.
+
+        Rolls the shared length and every per-layer fill back to ``new_len``.
+        Stale slots beyond ``new_len`` are left in place — the next ``update``
+        overwrites them, and attention only ever reads ``[:seq_len]``. Used to
+        undo speculative KV writes for rejected draft positions (S8); a no-op
+        when ``new_len == seq_len``.
+        """
+        if not 0 <= new_len <= self._seq_len:
+            raise ValueError(f"truncate new_len {new_len} not in [0, seq_len={self._seq_len}]")
+        self._seq_len = new_len
+        for i in range(self.num_layers):
+            self._layer_fill[i] = new_len
+
     @property
     def seq_len(self) -> int:
         return self._seq_len
