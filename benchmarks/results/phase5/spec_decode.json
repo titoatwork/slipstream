@@ -1,0 +1,62 @@
+{
+  "target": "Qwen/Qwen2.5-0.5B",
+  "draft": "Qwen/Qwen2.5-0.5B",
+  "self_speculation": true,
+  "max_new_tokens": 48,
+  "device": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "dtype": "torch.bfloat16",
+  "baseline_plain_s": 3.554870308000318,
+  "baseline_plain_tok_s": 13.502602300842,
+  "by_draft_length": [
+    {
+      "k": 1,
+      "spec_s": 6.265618756000549,
+      "spec_tok_s": 7.660855514713636,
+      "speedup": 0.5673614125653332,
+      "acceptance_rate": 0.96,
+      "mean_accepted_len": 1.96,
+      "token_identical_to_plain_greedy": true
+    },
+    {
+      "k": 2,
+      "spec_s": 5.861838816999807,
+      "spec_tok_s": 8.188556782011153,
+      "speedup": 0.60644286186971,
+      "acceptance_rate": 0.9411764705882353,
+      "mean_accepted_len": 2.8823529411764706,
+      "token_identical_to_plain_greedy": true
+    },
+    {
+      "k": 4,
+      "spec_s": 5.816584428999704,
+      "spec_tok_s": 8.252265669984387,
+      "speedup": 0.6111611292491219,
+      "acceptance_rate": 0.926829268292683,
+      "mean_accepted_len": 4.454545454545454,
+      "token_identical_to_plain_greedy": true
+    },
+    {
+      "k": 8,
+      "spec_s": 6.098792148999564,
+      "spec_tok_s": 7.870410866170253,
+      "speedup": 0.5828810395814937,
+      "acceptance_rate": 0.9555555555555556,
+      "mean_accepted_len": 8.166666666666666,
+      "token_identical_to_plain_greedy": true
+    }
+  ],
+  "best_speedup": 0.6111611292491219,
+  "gate5_speedup_target": 1.5,
+  "distribution_test": {
+    "n_samples": 3000,
+    "num_cells": 44,
+    "kept_tokens": 43,
+    "min_expected_count": 5.0,
+    "other_mass": 0.40183803426281883,
+    "dof": 43,
+    "chi2": 34.87506890983388,
+    "chi2_per_dof": 0.8110481141821833
+  },
+  "high_batch_regime": "Not measured: SpeculativeRunner is single-sequence. Speculation hurts at high batch because verify cost scales ~batch\u00d7K while acceptance-driven token savings do not; measuring it needs batched speculative verification.",
+  "note": "SELF-SPECULATION (draft == target): validates the harness and I8.1 on real weights but shows no speedup \u2014 there is no cheaper proposer. Set SPEC_DRAFT to a smaller matching-vocab model on T1/A100 for the Gate 5 number."
+}
