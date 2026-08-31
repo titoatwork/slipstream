@@ -55,6 +55,40 @@ class Sampler:
         if params.is_greedy:
             return torch.argmax(logits, dim=-1)
 
+        if generator is None and params.seed is not None:
+            generator = torch.Generator(device=logits.device)
+            generator.manual_seed(params.seed)
+
+        # `probs` applies the same filter chain and float32 softmax the sampler
+        # has always used; sampling from it is behaviourally unchanged.
+        probs = self.probs(logits, params, token_ids=token_ids)
+        sampled = torch.multinomial(probs, num_samples=1, generator=generator)
+        return sampled.squeeze(-1)
+
+    def probs(
+        self,
+        logits: torch.Tensor,
+        params: SamplingParams,
+        *,
+        token_ids: torch.Tensor | None = None,
+    ) -> torch.Tensor:
+        """Post-filter sampling distribution — the mass ``sample`` draws from.
+
+        Returns ``[B, vocab]`` float32 rows that sum to 1, applying the exact
+        filter order ``sample`` uses (repetition → temperature → top_k → top_p
+        → min_p → softmax). Greedy params (``params.is_greedy``) collapse to a
+        one-hot at ``argmax``, i.e. the point mass greedy decoding samples.
+
+        Speculative verification needs the target's and draft's *distributions*,
+        not one sample from each; routing both through this method guarantees
+        they are filtered identically, which the rejection-sampling correctness
+        proof (I8.1) depends on.
+        """
+        if params.is_greedy:
+            out = torch.zeros(logits.shape, dtype=torch.float32, device=logits.device)
+            out.scatter_(-1, torch.argmax(logits, dim=-1, keepdim=True), 1.0)
+            return out
+
         if params.repetition_penalty != 1.0 and token_ids is not None:
             logits = _apply_repetition_penalty(logits, token_ids, params.repetition_penalty)
 
@@ -66,14 +100,8 @@ class Sampler:
         if params.min_p > 0.0:
             logits = _apply_min_p(logits, params.min_p)
 
-        if generator is None and params.seed is not None:
-            generator = torch.Generator(device=logits.device)
-            generator.manual_seed(params.seed)
-
         # float32 softmax so multinomial sees stable, renormalized mass.
-        probs = torch.softmax(logits.float(), dim=-1)
-        sampled = torch.multinomial(probs, num_samples=1, generator=generator)
-        return sampled.squeeze(-1)
+        return torch.softmax(logits.float(), dim=-1)
 
 
 def _apply_repetition_penalty(
