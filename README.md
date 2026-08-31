@@ -6,7 +6,11 @@ PagedAttention · continuous batching · chunked prefill · prefix caching · cu
 
 ---
 
-> **Status:** Phase 4 on T0, **binding KV**. FCFS preempts 13× every closed seed; Horizon 0. T0-smooth hits always favor Horizon; the ratio is **1.8–16×** (median ~6.6×) — do not headline the first-run 16×. Fairness p99 TTFT fails 2× on 2/3 seeds. Open-loop: FCFS 71 preempts / 0 smooth; Horizon-f2 16/18. f0≠f2 on the closed cell. Paper 2s/200ms is a T0 miss. Phases 0–3: ITL p99 **−64%**, prefix **93%**.
+> **Status — Phase 4, dev hardware only.** The numbers below are Qwen2.5-0.5B on a laptop RTX 3050 (the T0 dev tier), n≈3. Treat them as a sketch, not the A100 result table the targets further down are written against.
+>
+> Under memory pressure the scheduler does what it's meant to. On a KV-bound burst, FCFS over-admits and preempts 13 times per seed; Horizon refuses the overflow and preempts zero, which keeps its inter-token-latency tail flat (p99 ITL ~0.4s vs ~5s for FCFS — and the same holds when requests arrive over time rather than all at once). Measured by smooth goodput — the share of requests that stay under the latency cap the whole way through — Horizon beats FCFS on every seed, by 1.8× to 16×. The 16× was the first run and isn't representative; the median is ~6.6×. Two honest caveats: on raw throughput FCFS is still ahead, and Horizon misses the fairness target (p99 TTFT) on two of three seeds. The length prediction is earning its keep, though — a mean-only predictor holds 5 of 18 requests smooth where the full feature set holds all 18.
+>
+> Earlier phases, same hardware: chunked prefill cut p99 ITL by 64%; prefix-cache hit rate 93%.
 
 ## The thesis
 

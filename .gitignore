@@ -52,3 +52,7 @@ dashboard/build/
 # logs
 *.log
 logs/
+
+# local session handoff notes (never pushed)
+/CLAUDE.md
+/HANDOFF.md
