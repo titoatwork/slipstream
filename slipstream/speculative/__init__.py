@@ -2,6 +2,11 @@
 
 from __future__ import annotations
 
+from slipstream.speculative.decode import (
+    ScoreFn,
+    SpeculativeStats,
+    speculative_generate,
+)
 from slipstream.speculative.rejection import VerifyResult, verify_tokens
 
 
@@ -10,4 +15,11 @@ class SpeculativeConfig:
     num_speculative_tokens: int = 4
 
 
-__all__ = ["SpeculativeConfig", "VerifyResult", "verify_tokens"]
+__all__ = [
+    "ScoreFn",
+    "SpeculativeConfig",
+    "SpeculativeStats",
+    "VerifyResult",
+    "speculative_generate",
+    "verify_tokens",
+]
