@@ -8,7 +8,12 @@ from slipstream.speculative.decode import (
     speculative_generate,
 )
 from slipstream.speculative.kv_cached import SpeculativeRunner
-from slipstream.speculative.rejection import VerifyResult, verify_tokens
+from slipstream.speculative.rejection import (
+    BatchedVerifyResult,
+    VerifyResult,
+    batched_verify_tokens,
+    verify_tokens,
+)
 
 
 class SpeculativeConfig:
@@ -17,11 +22,13 @@ class SpeculativeConfig:
 
 
 __all__ = [
+    "BatchedVerifyResult",
     "ScoreFn",
     "SpeculativeConfig",
     "SpeculativeRunner",
     "SpeculativeStats",
     "VerifyResult",
+    "batched_verify_tokens",
     "speculative_generate",
     "verify_tokens",
 ]
