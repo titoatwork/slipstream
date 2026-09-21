@@ -9,7 +9,7 @@ description = "A high-throughput LLM inference engine with a memory-aware schedu
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
-authors = [{ name = "Ibtesham Ul Haque" }]
+authors = [{ name = "Ibteshamul Haque" }]
 keywords = ["llm", "inference", "paged-attention", "scheduler"]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",

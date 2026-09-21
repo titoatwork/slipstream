@@ -1,6 +1,6 @@
 # Agent file ownership (MASTERPLAN §11.4).
 # Every path has exactly one owning agent. Cross-boundary edits need that
-# agent's review. Human owner: Ibtesham Ul Haque.
+# agent's review. Human owner: Ibteshamul Haque.
 
 # A1 Runtime — contracts, model architecture, numerics
 /slipstream/core/                        # A1

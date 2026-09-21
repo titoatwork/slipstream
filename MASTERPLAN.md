@@ -8,7 +8,7 @@
 |---|---|
 | **Document status** | v1.0 — Authoritative |
 | **Created** | 2026-08-13 |
-| **Owner** | Ibtesham Ul Haque |
+| **Owner** | Ibteshamul Haque |
 | **Classification** | Singular source of truth. All engineering decisions defer to this document. |
 | **Timeline** | 16 weeks |
 | **Target** | Minor project (built to major-project / publishable standard) |
@@ -94,22 +94,22 @@ The project is therefore structured as: **build the memory system → build the 
 
 ### 3.1 The technique stack
 
-| Technique | Origin | Status 2026 | Slipstream implements |
-|---|---|---|---|
-| **KV caching** | Baseline | Universal | ✅ Phase 1 |
-| **PagedAttention** | vLLM (SOSP '23) | Universal default | ✅ Phase 2 |
-| **Continuous batching** | Orca (OSDI '22) | Universal default | ✅ Phase 2 |
-| **Chunked prefill / stall-free sched.** | Sarathi-Serve (OSDI '24) | Default in vLLM & SGLang | ✅ Phase 3 |
-| **Prefix caching / RadixAttention** | SGLang | Default; 75–95% hit rates on agent workloads | ✅ Phase 3 |
-| **CUDA graphs** | NVIDIA | Standard; 30–50% CPU overhead cut at small batch | ✅ Phase 4 |
-| **FlashAttention-2 / -3** | Dao et al. | FA3 standard on Hopper; 75% peak FP8 FLOPS | ✅ Phase 2 (own Triton impl.) |
-| **Speculative decoding (EAGLE-3)** | 2025 | Merged in vLLM/SGLang/TRT-LLM early 2026; 0.80–0.88 acceptance, 3–4× | ✅ Phase 5 (simplified) |
-| **W4A16 quant (AWQ/GPTQ/Marlin)** | 2023–24 | Marlin standard; ~4× decode gain, zero prefill gain | ✅ Phase 5 |
-| **FP8 (E4M3/E5M2)** | Hopper+ | Standard on H100 | ⚠️ Phase 5 stretch |
-| **Tensor parallelism** | Megatron | Universal for >1 GPU | ✅ Phase 6 |
-| **PD disaggregation** | DistServe, Splitwise | Production-adopted; up to 7.4× goodput | ✅ Phase 6 |
-| **Multi-tier KV offload** | LMCache, Mooncake | Rapidly maturing; 3–10× latency cuts | ⚠️ Phase 6 stretch |
-| **Length-predictive scheduling** | **Open problem** | **Active research, no production system** | ⭐ **Phase 4 — our contribution** |
+| Technique | Origin | Status 2026 | Planned | Built (Sep 2026) |
+|---|---|---|---|---|
+| **KV caching** | Baseline | Universal | Phase 1 | Yes |
+| **PagedAttention** | vLLM (SOSP '23) | Universal default | Phase 2 | Yes |
+| **Continuous batching** | Orca (OSDI '22) | Universal default | Phase 2 | Yes |
+| **Chunked prefill / stall-free sched.** | Sarathi-Serve (OSDI '24) | Default in vLLM & SGLang | Phase 3 | Yes |
+| **Prefix caching / RadixAttention** | SGLang | Default; 75–95% hit rates on agent workloads | Phase 3 | Yes |
+| **CUDA graphs** | NVIDIA | Standard; 30–50% CPU overhead cut at small batch | Phase 4 | Yes |
+| **FlashAttention-2 / -3** | Dao et al. | FA3 standard on Hopper; 75% peak FP8 FLOPS | Phase 2 (own Triton impl.) | No. Prefill uses the reference path; the Triton paged-decode kernel is opt-in |
+| **Speculative decoding (EAGLE-3)** | 2025 | Merged in vLLM/SGLang/TRT-LLM early 2026; 0.80–0.88 acceptance, 3–4× | Phase 5 (simplified) | Partly (S8): verifier, KV-backed runner, acceptance metrics |
+| **W4A16 quant (AWQ/GPTQ/Marlin)** | 2023–24 | Marlin standard; ~4× decode gain, zero prefill gain | Phase 5 | Partly (S9): correctness core |
+| **FP8 (E4M3/E5M2)** | Hopper+ | Standard on H100 | Phase 5 stretch | No |
+| **Tensor parallelism** | Megatron | Universal for >1 GPU | Phase 6 | No (stub) |
+| **PD disaggregation** | DistServe, Splitwise | Production-adopted; up to 7.4× goodput | Phase 6 | No (stub) |
+| **Multi-tier KV offload** | LMCache, Mooncake | Rapidly maturing; 3–10× latency cuts | Phase 6 stretch | No |
+| **Length-predictive scheduling** | **Open problem** | **Active research, no production system** | ⭐ **Phase 4 — our contribution** | Yes (Horizon) |
 
 ### 3.2 Key quantitative findings from the literature
 
