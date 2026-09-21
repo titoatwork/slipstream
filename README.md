@@ -2,7 +2,7 @@
 
 **A high-throughput LLM inference engine built from scratch.** The research lives at the *system* layer: a memory-aware, output-length-predictive scheduler operating under hard KV-cache constraints — not a single faster kernel, but the policy that decides which sequences occupy memory and run.
 
-PagedAttention · continuous batching · chunked prefill · prefix caching · custom Triton kernels · speculative decoding · tensor parallelism · prefill/decode disaggregation.
+PagedAttention · continuous batching · chunked prefill · prefix caching · custom Triton kernels · CUDA graphs · speculative decoding. Tensor parallelism and prefill/decode disaggregation are planned for Phase 6 and exist only as stubs today.
 
 ---
 
