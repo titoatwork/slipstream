@@ -101,7 +101,7 @@ The project is therefore structured as: **build the memory system → build the 
 | **Continuous batching** | Orca (OSDI '22) | Universal default | Phase 2 | Yes |
 | **Chunked prefill / stall-free sched.** | Sarathi-Serve (OSDI '24) | Default in vLLM & SGLang | Phase 3 | Yes |
 | **Prefix caching / RadixAttention** | SGLang | Default; 75–95% hit rates on agent workloads | Phase 3 | Yes |
-| **CUDA graphs** | NVIDIA | Standard; 30–50% CPU overhead cut at small batch | Phase 4 | Yes |
+| **CUDA graphs** | NVIDIA | Standard; 30–50% CPU overhead cut at small batch | Phase 4 | Partly: capture/replay pool, 11.7x on a decode microbenchmark; not in the serving loop |
 | **FlashAttention-2 / -3** | Dao et al. | FA3 standard on Hopper; 75% peak FP8 FLOPS | Phase 2 (own Triton impl.) | No. Prefill uses the reference path; the Triton paged-decode kernel is opt-in |
 | **Speculative decoding (EAGLE-3)** | 2025 | Merged in vLLM/SGLang/TRT-LLM early 2026; 0.80–0.88 acceptance, 3–4× | Phase 5 (simplified) | Partly (S8): verifier, KV-backed runner, acceptance metrics |
 | **W4A16 quant (AWQ/GPTQ/Marlin)** | 2023–24 | Marlin standard; ~4× decode gain, zero prefill gain | Phase 5 | Partly (S9): correctness core |
